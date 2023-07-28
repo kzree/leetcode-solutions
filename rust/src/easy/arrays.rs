@@ -11,3 +11,20 @@ pub fn running_sum(nums: Vec<i32>) -> Vec<i32> {
 
     sum_arr
 }
+
+// 1672. Richest Customer Wealth
+pub fn maximum_wealth(accounts: Vec<Vec<i32>>) -> i32 {
+    let mut richest = 0;
+
+    for client in &accounts {
+        let mut total_value = 0;
+        for bank_value in client {
+            total_value += bank_value;
+        }
+        if total_value > richest {
+            richest = total_value;
+        }
+    }
+
+    richest
+}
