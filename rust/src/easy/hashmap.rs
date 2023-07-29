@@ -14,7 +14,7 @@ fn get_char_counts(string: String) -> HashMap<char, i32> {
     char_map
 }
 
-pub fn can_construct(ransom_note: String, magazine: String) -> bool {
+pub fn old_can_construct(ransom_note: String, magazine: String) -> bool {
     let ransom_counts = get_char_counts(ransom_note);
     let magazine_counts = get_char_counts(magazine);
 
@@ -26,6 +26,22 @@ pub fn can_construct(ransom_note: String, magazine: String) -> bool {
                 }
             }
             None => return false,
+        }
+    }
+    true
+}
+
+pub fn can_construct(ransom_note: String, magazine: String) -> bool {
+    let mut magazine_counts = get_char_counts(magazine);
+
+    for c in ransom_note.to_lowercase().chars() {
+        if let Some(m) = magazine_counts.get_mut(&c) {
+            if *m == 0 {
+                return false;
+            }
+            *m -= 1;
+        } else {
+            return false;
         }
     }
     true
