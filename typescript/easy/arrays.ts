@@ -4,7 +4,7 @@
  */
 function duplicateZeros(arr: number[]): void {
   const maxLength = arr.length;
-  const indexes = [];
+  const indexes: number[] = [];
 
   arr.forEach((element, index) => {
     if (element === 0) {
